@@ -68,8 +68,8 @@
     maxSpeed: 760,       // speed cap
     playerW: 44,
     playerH: 52,
-    minPlatW: 150,
-    maxPlatW: 360,
+    minPlatW: 260,
+    maxPlatW: 420,
     minGap: 95,
   };
 
