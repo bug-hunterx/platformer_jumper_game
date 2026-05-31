@@ -1,0 +1,159 @@
+/* ---------- Reset & base ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0b0610;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  /* Disable browser touch gestures (scroll/zoom) so taps only drive the game */
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+/* ---------- Game canvas ---------- */
+#game-wrap {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+/* ---------- Overlays (start / game over) ---------- */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2.4vh, 20px);
+  text-align: center;
+  padding: 4vh 6vw;
+  color: #fff;
+  background: radial-gradient(ellipse at center, rgba(20, 8, 30, 0.55) 0%, rgba(8, 4, 14, 0.88) 100%);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+h1 {
+  font-size: clamp(28px, 8vh, 72px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, #ffd86b 0%, #ff7b3d 55%, #ff3d6e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(255, 120, 60, 0.35);
+}
+
+h1.dead {
+  background: linear-gradient(180deg, #ff9a6b 0%, #ff3d3d 60%, #b01030 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.tagline {
+  font-size: clamp(13px, 2.4vh, 20px);
+  color: #cdbfe0;
+  font-weight: 500;
+}
+
+.controls-hint {
+  font-size: clamp(12px, 2.2vh, 18px);
+  color: #e8def5;
+  line-height: 1.6;
+}
+
+.controls-hint small {
+  color: #9d8fb5;
+}
+
+.key {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-weight: 700;
+  font-size: 0.92em;
+}
+
+.btn {
+  margin-top: 4px;
+  padding: clamp(10px, 1.8vh, 16px) clamp(28px, 6vw, 52px);
+  font-size: clamp(16px, 3vh, 26px);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #1a0a0a;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  background: linear-gradient(180deg, #ffd86b 0%, #ff8a3d 100%);
+  box-shadow: 0 8px 24px rgba(255, 120, 60, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.08s ease, box-shadow 0.2s ease;
+}
+
+.btn:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 4px 14px rgba(255, 120, 60, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Rotate-to-landscape nudge ---------- */
+#rotate-notice {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  padding: 8vw;
+  color: #fff;
+  background: #0b0610;
+}
+
+#rotate-notice .phone {
+  width: 64px;
+  height: 64px;
+  border: 4px solid #ff8a3d;
+  border-radius: 12px;
+  animation: rotate-hint 1.6s ease-in-out infinite;
+}
+
+#rotate-notice p {
+  font-size: clamp(16px, 4.5vw, 22px);
+  color: #e8def5;
+  font-weight: 600;
+}
+
+@keyframes rotate-hint {
+  0%, 40% { transform: rotate(0deg); }
+  60%, 100% { transform: rotate(-90deg); }
+}
+
+/* Only show the rotate nudge on touch devices held in portrait */
+@media (orientation: portrait) and (pointer: coarse) {
+  #rotate-notice { display: flex; }
+}

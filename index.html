@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Lava Dash — Auto Runner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-wrap">
+    <canvas id="game"></canvas>
+
+    <!-- Start overlay -->
+    <div id="start-screen" class="overlay">
+      <h1>LAVA&nbsp;DASH</h1>
+      <p class="tagline">Run. Jump the gaps. Don't touch the lava.</p>
+      <div class="controls-hint">
+        <span class="key">Space</span> / <span class="key">Tap</span> to jump
+        <br /><small>Press twice for a double jump</small>
+      </div>
+      <button id="start-btn" class="btn">START</button>
+    </div>
+
+    <!-- Game over overlay -->
+    <div id="gameover-screen" class="overlay hidden">
+      <h1 class="dead">YOU&nbsp;MELTED</h1>
+      <button id="restart-btn" class="btn">RUN AGAIN</button>
+      <p class="tagline"><span class="key">Space</span> / <span class="key">Tap</span> to restart</p>
+    </div>
+  </div>
+
+  <!-- Rotate-to-landscape nudge (mobile portrait only) -->
+  <div id="rotate-notice">
+    <div class="phone"></div>
+    <p>Rotate your device to landscape to play</p>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
